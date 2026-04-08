@@ -1,0 +1,205 @@
+/* Login Main Area */
+.login-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  padding-top: 7rem;
+  padding-bottom: 3rem;
+  overflow: hidden;
+}
+
+/* Background Blobs (same as auth.html) */
+.login-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+}
+.login-blob-1 {
+  width: 31.25rem;
+  height: 31.25rem;
+  background-color: rgba(96, 165, 250, 0.2);
+}
+.login-blob-2 {
+  width: 25rem;
+  height: 25rem;
+  background-color: rgba(139, 92, 246, 0.2);
+  left: 25%;
+  animation-delay: 200ms;
+}
+.login-blob-3 {
+  width: 28.125rem;
+  height: 28.125rem;
+  background-color: rgba(244, 114, 182, 0.2);
+  bottom: 0;
+  right: 25%;
+  animation-delay: 400ms;
+}
+
+/* Login Container & Card */
+.login-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0 1.5rem;
+}
+
+.login-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+@media (min-width: 640px) {
+  .login-card { padding: 2.5rem; }
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-logo {
+  display: inline-flex;
+  width: 3rem;
+  height: 3rem;
+  background-image: linear-gradient(to top right, var(--color-brand-600), var(--color-accent-500));
+  border-radius: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+.login-logo:hover {
+  transform: rotate(12deg);
+}
+
+.login-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-slate-900);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  color: var(--color-slate-500);
+  font-weight: 500;
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-slate-700);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-slate-50);
+  border: 1px solid var(--color-slate-200);
+  border-radius: 0.75rem;
+  outline: none;
+  font-weight: 500;
+  color: var(--color-slate-700);
+  transition: all 0.3s;
+}
+.form-input::placeholder { color: var(--color-slate-400); }
+.form-input:focus {
+  border-color: var(--color-brand-500);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.form-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-brand-600);
+  transition: color 0.3s;
+}
+.forgot-link:hover { color: var(--color-brand-500); }
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.form-checkbox {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-brand-600);
+  cursor: pointer;
+}
+.checkbox-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-slate-600);
+  cursor: pointer;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: var(--color-brand-600);
+  color: var(--color-white);
+  font-weight: 600;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+  transition: all 0.3s;
+}
+.btn-submit:hover {
+  background-color: var(--color-brand-700);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.125rem);
+}
+
+.login-footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-slate-500);
+}
+.login-link {
+  color: var(--color-brand-600);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.login-link:hover { color: var(--color-brand-500); }
