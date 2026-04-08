@@ -1,8 +1,4 @@
-/**
- * Reduced main.js: Contains only the critical functionality required for the site.
- */
 
-// 1. TOAST NOTIFICATIONS (Required for alerts and info popups)
 const TOAST_CONFIG = {
     success: {
         cssClass: 'toast--success',
@@ -63,7 +59,7 @@ function dismissToast(toast) {
 }
 
 
-// 2. SCROLL-REVEAL ANIMATIONS (Required because objects start invisible under opacity: 0)
+// 2. SCROLL animation
 function initRevealAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
