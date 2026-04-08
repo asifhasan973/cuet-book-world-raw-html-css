@@ -4,21 +4,28 @@ This is a static, raw HTML and CSS implementation of the CUET Book World website
 
 ## 📂 Project Structure
 
-```
+```text
 CUET_BOOK_WORLD/
 ├── index.html              # Homepage
 ├── ebook.html              # E-book Library
+├── booklist.html           # Book List / Catalog
 ├── profile.html            # User Profile
-├── auth.html               # Login / Signup
-├── styles/
+├── auth.html               # Main Auth Component/Page
+├── login.html              # Login Page
+├── signup.html             # Signup Page
+├── renew.html              # Book Renewal Page
+├── Styles/
 │   ├── global.css          # Global styles & variables
-│   ├── home.css            # Homepage specific styles
+│   ├── index.css           # Homepage specific styles
 │   ├── ebook.css           # E-book page styles
+│   ├── booklist.css        # Booklist page styles
 │   ├── profile.css         # Profile page styles
-│   └── auth.css            # Auth page styles
+│   ├── auth.css            # Auth page styles
+│   ├── login.css           # Login page styles
+│   ├── signup.css          # Signup page styles
+│   └── renew.css           # Renew page styles
 └── scripts/
-    ├── main.js             # Navbar, mobile menu, animations, toast
-    └── profile.js          # Profile page logic
+    └── main.js             # Navbar, mobile menu, animations, toast
 ```
 
 ## 🚀 Features
@@ -62,8 +69,10 @@ CUET_BOOK_WORLD/
 2. **Open** any HTML file in your web browser:
    - `index.html` for the homepage
    - `ebook.html` for the e-book library
+   - `booklist.html` for the book catalog
    - `profile.html` for the user profile
-   - `auth.html` for login/signup
+   - `login.html` / `signup.html` for authentication
+   - `renew.html` for renewing a book
 
 ## 🎨 Design System
 
