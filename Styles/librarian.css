@@ -93,6 +93,7 @@
 }
 .req-pending { background-color: var(--color-amber-100); color: var(--color-amber-700); }
 .req-approved { background-color: var(--color-emerald-100); color: var(--color-emerald-700); }
+.req-rejected { background-color: var(--color-rose-100); color: var(--color-rose-700); }
 
 .req-body {
   font-size: 0.875rem;

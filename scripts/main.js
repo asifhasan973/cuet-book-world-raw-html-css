@@ -1,24 +1,4 @@
-/* ============================================================
-   CUET Book World — main.js (Raw CSS Edition)
-   Centralised script — handles ALL pages
-   Features:
-     1.  Toast notification system
-     2.  Auto active-link detection
-     3.  Navbar glass effect on scroll
-     4.  Mobile menu toggle (with outside-click close)
-     5.  Scroll-reveal animations (IntersectionObserver)
-     6.  Scroll-to-top button
-     7.  Scroll progress bar
-     8.  Page entrance fade-in
-     9.  Button ripple effect
-    10.  Typed text animation  (add data-typed='["w1","w2"]' to any element)
-    11.  Stats counter animation (add data-count="500" data-suffix="+" to element)
-    12.  Smart navbar: hide on scroll-down, show on scroll-up
-    13.  Keyboard shortcut: '/' to focus ebook search
-   ============================================================ */
 
-
-/* ── 1. TOAST SYSTEM ─────────────────────────────────────── */
 const TOAST_CONFIG = {
     success: {
         cssClass: 'toast--success',

@@ -197,7 +197,8 @@
             const customEbooks = JSON.parse(localStorage.getItem('customEbooks') || '[]');
             customEbooks.forEach(book => {
                 const article = document.createElement('article');
-                article.className = 'ebook-card reveal';
+                article.className = 'ebook-card animate-fade-in-up';
+                article.style.opacity = '1';
                 const topicLower = book.category.toLowerCase().replace(/\s+/g, '-');
                 article.setAttribute('data-title', book.title);
                 article.setAttribute('data-author', book.author);

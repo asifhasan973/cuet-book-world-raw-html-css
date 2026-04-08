@@ -165,11 +165,11 @@
                 const isPending = req.status === 'Pending';
                 
                 const card = document.createElement('div');
-                card.className = 'request-card ' + (isPending ? '' : 'approved');
+                card.className = 'request-card ' + req.status.toLowerCase();
                 card.innerHTML = `
                     <div class="req-header">
                         <span class="req-id">ID: ${req.studentId}</span>
-                        <span class="req-badge ${isPending ? 'req-pending' : 'req-approved'}">${req.status}</span>
+                        <span class="req-badge req-${req.status.toLowerCase()}">${req.status}</span>
                     </div>
                     <div class="req-body">
                         <strong>Year:</strong> ${req.year}<br>
@@ -179,12 +179,19 @@
                     ${isPending ? `
                     <div class="req-actions">
                         <label class="form-label">Meet Link</label>
-                        <input type="text" id="meet-link-${req.id}" class="action-input" placeholder="meet.google.com/xxx-xxxx-xxx">
+                        <div style="display:flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <input type="text" id="meet-link-${req.id}" class="action-input" style="margin-bottom:0;" placeholder="meet.google.com/xxx">
+                            <button type="button" onclick="sendMeet(${req.id})" class="btn-submit-action" style="margin-top:0; width:auto; padding: 0.5rem 1rem; background-color: var(--color-blue-500);">Send Meet</button>
+                        </div>
                         
-                        <label class="form-label mt-2">Fine Levied (Tk)</label>
-                        <input type="number" id="fine-${req.id}" class="action-input" value="0">
+                        <div style="margin-bottom: 1.25rem; font-size: 0.875rem; color: var(--color-slate-700);">
+                            <strong>Fine :</strong> ${req.fine} Tk
+                        </div>
                         
-                        <button type="button" onclick="approveRequest(${req.id})" class="btn-submit-action btn-approve">Approve Request</button>
+                        <div style="display:flex; gap: 0.5rem;">
+                            <button type="button" onclick="approveRequest(${req.id})" class="btn-submit-action btn-approve" style="margin-top:0;">Approve Renew</button>
+                            <button type="button" onclick="rejectRequest(${req.id})" class="btn-submit-action" style="margin-top:0; background-color: var(--color-rose-500);">Reject Renew</button>
+                        </div>
                     </div>
                     ` : `
                     <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--color-slate-200); font-size: 0.875rem; color: var(--color-slate-600);">
@@ -197,23 +204,46 @@
             });
         }
 
-        // Global function to approve request
+        // Global functions for requests
+        window.sendMeet = function(id) {
+            const meetLink = document.getElementById(`meet-link-${id}`).value;
+            if(!meetLink) { alert('Please enter a meet link first.'); return; }
+            let requests = JSON.parse(localStorage.getItem('renewRequests') || '[]');
+            const index = requests.findIndex(r => r.id === id);
+            if(index !== -1) {
+                requests[index].meetLink = meetLink;
+                localStorage.setItem('renewRequests', JSON.stringify(requests));
+                alert('Meet link sent to student!');
+            }
+        };
+
         window.approveRequest = function(id) {
             let requests = JSON.parse(localStorage.getItem('renewRequests') || '[]');
             const index = requests.findIndex(r => r.id === id);
-            
             if(index !== -1) {
-                const meetLink = document.getElementById(\`meet-link-\${id}\`).value;
-                const fine = document.getElementById(\`fine-\${id}\`).value;
-                
                 requests[index].status = 'Approved';
-                requests[index].meetLink = meetLink || 'meet.google.com/default';
-                requests[index].fine = parseInt(fine) || 0;
-                
                 localStorage.setItem('renewRequests', JSON.stringify(requests));
                 loadRequests(); // Re-render
             }
         };
+
+        window.rejectRequest = function(id) {
+            if(confirm('Are you sure you want to reject this renewal?')) {
+                let requests = JSON.parse(localStorage.getItem('renewRequests') || '[]');
+                const index = requests.findIndex(r => r.id === id);
+                if(index !== -1) {
+                    requests[index].status = 'Rejected';
+                    localStorage.setItem('renewRequests', JSON.stringify(requests));
+                    loadRequests(); // Re-render
+                }
+            }
+        };
+        // Listen for changes from other tabs to auto-update
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'renewRequests') {
+                loadRequests();
+            }
+        });
 
         // Initialize display
         loadRequests();
