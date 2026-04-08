@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSE Book List | CUET Book World</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/booklist.css">
+</head>
+<body>
+
+    <nav class="navbar py-4" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-box">CB</div>
+                <span class="logo-text">CUET Book World</span>
+            </a>
+            
+            <div class="desktop-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="booklist.html" class="nav-link active">BookList</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <a href="auth.html" class="btn-primary">Log in</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="mobile-menu-btn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu hidden">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-link">Home</a>
+                <a href="booklist.html" class="mobile-link active">BookList</a>
+                <a href="profile.html" class="mobile-link">Profile</a>
+                <div class="mobile-menu-footer">
+                    <a href="auth.html" class="btn-primary-block">Log in</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <header class="booklist-header">
+        <div class="booklist-bg-shapes">
+            <div class="blob booklist-blob-1"></div>
+            <div class="blob booklist-blob-2"></div>
+        </div>
+        
+        <div class="booklist-header-content reveal animate-fade-in-up">
+            <div class="header-badge">
+                Physical Library
+            </div>
+            <h1 class="header-title">
+                CSE <span class="text-gradient">Book List</span>
+            </h1>
+            <p class="header-desc">Browse and issue top Computer Science books from CUET Book World.</p>
+        </div>
+    </header>
+
+    
+    <main class="booklist-main">
+        <div class="books-grid">
+            
+            <article class="reveal book-card">
+                <div class="book-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780262033848-L.jpg" alt="Introduction to Algorithms" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80'" />
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Introduction to Algorithms</h3>
+                    <p class="book-author">By Thomas H. Cormen et al.</p>
+                    <p class="book-desc">Comprehensive textbook on algorithms and data structures widely used in academia and industry.</p>
+                    <button onclick="showToast('Book issue request sent for approval!', 'success')" class="btn-issue">Issue Book</button>
+                </div>
+            </article>
+
+            <article class="reveal animation-delay-200 book-card">
+                <div class="book-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780132126953-L.jpg" alt="Computer Networks" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80'" />
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Computer Networks</h3>
+                    <p class="book-author">By Andrew S. Tanenbaum</p>
+                    <p class="book-desc">Authoritative book on network protocols, architectures, and design principles.</p>
+                    <button onclick="showToast('Book issue request sent for approval!', 'success')" class="btn-issue">Issue Book</button>
+                </div>
+            </article>
+
+            <article class="reveal animation-delay-400 book-card">
+                <div class="book-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9781118063330-L.jpg" alt="Operating System Concepts" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80'" />
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Operating System Concepts</h3>
+                    <p class="book-author">By Abraham Silberschatz</p>
+                    <p class="book-desc">Classic text on OS fundamentals, process management, memory, and file systems.</p>
+                    <button onclick="showToast('Book issue request sent for approval!', 'success')" class="btn-issue">Issue Book</button>
+                </div>
+            </article>
+
+            <article class="reveal book-card">
+                <div class="book-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780136042594-L.jpg" alt="Artificial Intelligence" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=400&q=80'" />
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Artificial Intelligence</h3>
+                    <p class="book-author">By Stuart Russell, Peter Norvig</p>
+                    <p class="book-desc">Leading textbook covering AI concepts, machine learning, reasoning, and robotics.</p>
+                    <button onclick="showToast('Book issue request sent for approval!', 'success')" class="btn-issue">Issue Book</button>
+                </div>
+            </article>
+
+            <article class="reveal animation-delay-200 book-card">
+                <div class="book-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780073523323-L.jpg" alt="Database System Concepts" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=400&q=80'" />
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Database System Concepts</h3>
+                    <p class="book-author">By Abraham Silberschatz</p>
+                    <p class="book-desc">Widely used textbook for database system design and implementation.</p>
+                    <button onclick="showToast('Book issue request sent for approval!', 'success')" class="btn-issue">Issue Book</button>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+   
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo-box">CB</div>
+                <span class="footer-brand-text">CUET Book World</span>
+            </div>
+            
+            <div class="footer-contact">
+                <a href="#" class="contact-link">
+                    <div class="contact-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>Contact: ******
+                </a>
+                <a href="mailto:***@gmail.com" class="contact-link">
+                     <div class="contact-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                     </div>Email: ***@gmail.com
+                </a>
+            </div>
+            <div class="footer-copyright">&copy; 2026 All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <!-- main.js handles: navbar, mobile menu, reveal animations, toast, scroll-to-top -->
+    <script src="scripts/main.js"></script>
+</body>
+</html>

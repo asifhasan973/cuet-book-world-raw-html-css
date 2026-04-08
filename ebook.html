@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E-Books | CUET Book World</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/ebook.css">
+</head>
+<body>
+
+    <nav class="navbar py-4" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-box">CB</div>
+                <span class="logo-text">CUET Book World</span>
+            </a>
+            
+            <div class="desktop-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="ebook.html" class="nav-link active">E-Books</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <a href="auth.html" class="btn-primary">Log in</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="mobile-menu-btn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu hidden">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-link">Home</a>
+                <a href="ebook.html" class="mobile-link active">E-Books</a>
+                <a href="profile.html" class="mobile-link">Profile</a>
+                <div class="mobile-menu-footer">
+                    <a href="auth.html" class="btn-primary-block">Log in</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <header class="ebook-header">
+        <div class="ebook-bg-shapes">
+            <div class="blob ebook-blob-1"></div>
+            <div class="blob ebook-blob-2"></div>
+        </div>
+        
+        <div class="ebook-header-content reveal animate-fade-in-up">
+            <div class="header-badge">
+                Digital Library
+            </div>
+            <h1 class="header-title">
+                E-Books <span class="text-gradient">Library</span>
+            </h1>
+            <p class="header-desc">Search and filter through a wide collection of Computer Science e-books.</p>
+        </div>
+    </header>
+
+    <main class="ebook-main">
+        
+        <section class="search-section reveal animation-delay-200">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <div class="search-icon">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input type="search" id="searchInput" placeholder="Search by title or author..." aria-label="Search e-books" class="search-input" />
+                </div>
+                
+                <div class="filter-wrapper">
+                    <select id="filterTopic" aria-label="Filter by topic" class="filter-select">
+                        <option value="">All Topics</option>
+                        <option value="algorithms">Algorithms</option>
+                        <option value="networks">Networks</option>
+                        <option value="os">Operating Systems</option>
+                        <option value="ai">Artificial Intelligence</option>
+                        <option value="database">Database</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="ebooks-grid" id="ebookList">
+
+            <article class="ebook-card reveal" data-title="Introduction to Algorithms" data-author="Thomas H. Cormen" data-topic="algorithms">
+                <div class="ebook-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780262033848-L.jpg" alt="Introduction to Algorithms" class="ebook-cover" onerror="this.src='https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80'" />
+                    <div class="ebook-overlay">
+                         <button onclick="showToast('Opening E-book reader...', 'info')" class="btn-read">Read Now</button>
+                    </div>
+                </div>
+                <div class="ebook-info">
+                    <h3 class="ebook-title">Introduction to Algorithms</h3>
+                    <p class="ebook-author">By Thomas H. Cormen</p>
+                    <span class="ebook-badge">Algorithms</span>
+                </div>
+            </article>
+
+             <article class="ebook-card reveal animation-delay-200" data-title="Computer Networks" data-author="Andrew S. Tanenbaum" data-topic="networks">
+                <div class="ebook-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780132126953-L.jpg" alt="Computer Networks" class="ebook-cover" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80'" />
+                    <div class="ebook-overlay">
+                         <button onclick="showToast('Opening E-book reader...', 'info')" class="btn-read">Read Now</button>
+                    </div>
+                </div>
+                <div class="ebook-info">
+                    <h3 class="ebook-title">Computer Networks</h3>
+                    <p class="ebook-author">By Andrew S. Tanenbaum</p>
+                    <span class="ebook-badge">Networks</span>
+                </div>
+            </article>
+
+            <article class="ebook-card reveal animation-delay-400" data-title="Operating System Concepts" data-author="Abraham Silberschatz" data-topic="os">
+                <div class="ebook-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9781118063330-L.jpg" alt="Operating System Concepts" class="ebook-cover" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80'" />
+                    <div class="ebook-overlay">
+                         <button onclick="showToast('Opening E-book reader...', 'info')" class="btn-read">Read Now</button>
+                    </div>
+                </div>
+                <div class="ebook-info">
+                    <h3 class="ebook-title">Operating System Concepts</h3>
+                    <p class="ebook-author">By Abraham Silberschatz</p>
+                    <span class="ebook-badge">OS</span>
+                </div>
+            </article>
+
+            <article class="ebook-card reveal" data-title="Artificial Intelligence: A Modern Approach" data-author="Stuart Russell" data-topic="ai">
+                <div class="ebook-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780136042594-L.jpg" alt="Artificial Intelligence: A Modern Approach" class="ebook-cover" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=400&q=80'" />
+                    <div class="ebook-overlay">
+                         <button onclick="showToast('Opening E-book reader...', 'info')" class="btn-read">Read Now</button>
+                    </div>
+                </div>
+                <div class="ebook-info">
+                    <h3 class="ebook-title">Artificial Intelligence</h3>
+                    <p class="ebook-author">By Stuart Russell</p>
+                    <span class="ebook-badge">AI</span>
+                </div>
+            </article>
+
+            <article class="ebook-card reveal animation-delay-200" data-title="Database System Concepts" data-author="Abraham Silberschatz" data-topic="database">
+                <div class="ebook-cover-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780073523323-L.jpg" alt="Database System Concepts" class="ebook-cover" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=400&q=80'" />
+                    <div class="ebook-overlay">
+                         <button onclick="showToast('Opening E-book reader...', 'info')" class="btn-read">Read Now</button>
+                    </div>
+                </div>
+                <div class="ebook-info">
+                    <h3 class="ebook-title">Database System Concepts</h3>
+                    <p class="ebook-author">By Abraham Silberschatz</p>
+                    <span class="ebook-badge">Database</span>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+   
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo-box">CB</div>
+                <span class="footer-brand-text">CUET Book World</span>
+            </div>
+            
+            <div class="footer-contact">
+                <a href="#" class="contact-link">
+                    <div class="contact-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>Contact: ******
+                </a>
+                <a href="mailto:***@gmail.com" class="contact-link">
+                     <div class="contact-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                     </div>Email: ***@gmail.com
+                </a>
+            </div>
+            <div class="footer-copyright">&copy; 2026 All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <!-- main.js handles: navbar, mobile menu, reveal animations, toast, scroll-to-top -->
+    <script src="scripts/main.js"></script>
+
+    <!-- Page-specific: search & topic filter -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const filterTopic = document.getElementById('filterTopic');
+            const cards       = document.querySelectorAll('.ebook-card');
+
+            function filterBooks() {
+                const term  = searchInput.value.toLowerCase();
+                const topic = filterTopic.value;
+                cards.forEach(card => {
+                    const titleMatch  = card.dataset.title.toLowerCase().includes(term);
+                    const authorMatch = card.dataset.author.toLowerCase().includes(term);
+                    const topicMatch  = !topic || card.dataset.topic === topic;
+                    card.style.display = (titleMatch || authorMatch) && topicMatch ? '' : 'none';
+                });
+            }
+
+            searchInput.addEventListener('input',  filterBooks);
+            filterTopic.addEventListener('change', filterBooks);
+        });
+    </script>
+</body>
+</html>
