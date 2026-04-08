@@ -153,5 +153,29 @@
 
     <!-- main.js handles: navbar, mobile menu, reveal animations, toast, scroll-to-top -->
     <script src="scripts/main.js"></script>
+
+    <!-- Load custom books -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const booksGrid = document.querySelector('.books-grid');
+            const customBooks = JSON.parse(localStorage.getItem('customPhysicalBooks') || '[]');
+            customBooks.forEach(book => {
+                const article = document.createElement('article');
+                article.className = 'reveal book-card';
+                article.innerHTML = `
+                    <div class="book-cover-container">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80" alt="${book.title}" class="book-cover" />
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">By ${book.author}</p>
+                        <p class="book-desc">${book.category} - Specially added by Librarian.</p>
+                        <button onclick="showToast('Book issue request sent for approval!', 'success')" class="btn-issue">Issue Book</button>
+                    </div>
+                `;
+                booksGrid.appendChild(article);
+            });
+        });
+    </script>
 </body>
 </html>

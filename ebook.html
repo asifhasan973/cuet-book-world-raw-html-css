@@ -186,12 +186,41 @@
     <!-- main.js handles: navbar, mobile menu, reveal animations, toast, scroll-to-top -->
     <script src="scripts/main.js"></script>
 
-    <!-- Page-specific: search & topic filter -->
+    <!-- Page-specific: search & topic filter & load custom books -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const ebookList = document.getElementById('ebookList');
             const searchInput = document.getElementById('searchInput');
             const filterTopic = document.getElementById('filterTopic');
-            const cards       = document.querySelectorAll('.ebook-card');
+
+            // 1. Load custom e-books from localStorage
+            const customEbooks = JSON.parse(localStorage.getItem('customEbooks') || '[]');
+            customEbooks.forEach(book => {
+                const article = document.createElement('article');
+                article.className = 'ebook-card reveal';
+                const topicLower = book.category.toLowerCase().replace(/\s+/g, '-');
+                article.setAttribute('data-title', book.title);
+                article.setAttribute('data-author', book.author);
+                article.setAttribute('data-topic', topicLower);
+
+                article.innerHTML = `
+                    <div class="ebook-cover-container">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80" alt="${book.title}" class="ebook-cover" />
+                        <div class="ebook-overlay">
+                             <a href="${book.pdf}" target="_blank" onclick="showToast('Opening E-book reader...', 'info')" class="btn-read" style="text-decoration:none; display:flex; align-items:center; justify-content:center;">Read Now</a>
+                        </div>
+                    </div>
+                    <div class="ebook-info">
+                        <h3 class="ebook-title">${book.title}</h3>
+                        <p class="ebook-author">By ${book.author}</p>
+                        <span class="ebook-badge">${book.category}</span>
+                    </div>
+                `;
+                ebookList.appendChild(article);
+            });
+
+            // 2. Setup filtering logic after injection
+            const cards = document.querySelectorAll('.ebook-card');
 
             function filterBooks() {
                 const term  = searchInput.value.toLowerCase();
@@ -199,7 +228,7 @@
                 cards.forEach(card => {
                     const titleMatch  = card.dataset.title.toLowerCase().includes(term);
                     const authorMatch = card.dataset.author.toLowerCase().includes(term);
-                    const topicMatch  = !topic || card.dataset.topic === topic;
+                    const topicMatch  = !topic || card.dataset.topic.includes(topic);
                     card.style.display = (titleMatch || authorMatch) && topicMatch ? '' : 'none';
                 });
             }

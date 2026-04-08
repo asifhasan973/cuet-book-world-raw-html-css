@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in | CUET Book World</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/login.css">
 </head>
+
 <body>
 
     <nav class="navbar py-4" id="navbar">
@@ -25,7 +28,10 @@
             </div>
 
             <button id="mobile-menu-btn" class="mobile-menu-btn">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
             </button>
         </div>
 
@@ -56,27 +62,46 @@
                     <p class="login-subtitle">Please enter your details to log in.</p>
                 </div>
 
-                <form class="login-form" onsubmit="event.preventDefault(); showToast('Login successful! Redirecting...', 'success'); setTimeout(() => window.location.href='index.html', 1500);">
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" required placeholder="name@example.com" class="form-input">
-                    </div>
+                <script>
+                    function loginAs(role) {
+                        localStorage.setItem('userRole', role);
 
-                    <div class="form-group">
-                        <div class="form-header-row">
-                            <label class="form-label">Password</label>
-                            <a href="#" class="forgot-link">Forgot password?</a>
-                        </div>
-                        <input type="password" required placeholder="••••••••" class="form-input">
-                    </div>
+                        if (role === 'student') {
+                            showToast('Welcome Student! Redirecting...', 'success');
+                            setTimeout(() => window.location.href = 'index.html', 1500);
+                        } else if (role === 'librarian') {
+                            showToast('Welcome Librarian! Redirecting...', 'success');
+                            setTimeout(() => window.location.href = 'librarian.html', 1500);
+                        }
+                    }
+                </script>
 
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="remember" class="form-checkbox">
-                        <label for="remember" class="checkbox-label">Remember for 30 days</label>
-                    </div>
+                <div class="role-buttons" style="display: flex; flex-direction: column; gap: 16px; margin: 24px 0;">
+                    <button type="button" onclick="loginAs('student')" class="btn-submit"
+                        style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222">
+                            </path>
+                        </svg>
+                        Login as Student
+                    </button>
 
-                    <button type="submit" class="btn-submit">Log In</button>
-                </form>
+                    <button type="button" onclick="loginAs('librarian')" class="btn-submit"
+                        style="background-color: var(--emerald-500); display: flex; align-items: center; justify-content: center; gap: 8px; color: black;">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2">
+                            </path>
+                        </svg>
+                        Login as Librarian
+                    </button>
+                </div>
 
                 <div class="login-footer">
                     Don't have an account? <a href="signup.html" class="login-link">Sign up</a>
@@ -89,4 +114,5 @@
     <!-- main.js handles: navbar, mobile menu, active links, toast, scroll-to-top -->
     <script src="scripts/main.js"></script>
 </body>
+
 </html>

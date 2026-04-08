@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Management Dashboard | CUET Book World</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/global.css">
+    <link rel="stylesheet" href="Styles/librarian.css">
+    <style>
+        .logout-btn {
+            background-color: var(--color-slate-100);
+            color: var(--color-slate-700);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--color-slate-200);
+            transition: background-color 0.2s;
+        }
+        .logout-btn:hover { background-color: var(--color-slate-200); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar py-4" id="navbar" style="border-bottom: 1px solid var(--color-slate-200); background-color: white;">
+        <div class="nav-container">
+            <a href="librarian.html" class="nav-logo">
+                <div class="logo-box" style="background: var(--color-slate-900);">CB</div>
+                <span class="logo-text" style="color: var(--color-slate-900);">Dashboard</span>
+            </a>
+            <div class="desktop-menu">
+                <button onclick="localStorage.removeItem('userRole'); window.location.href='index.html';" class="logout-btn">Log out</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="librarian-wrapper">
+        <header class="librarian-header">
+            <h1>Management Dashboard</h1>
+            <p>Administer book renewals and expand the library catalog.</p>
+        </header>
+
+        <main class="librarian-main">
+            <!-- Renew Requests -->
+            <div class="dash-card">
+                <h2 class="dash-title">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Renewal Requests
+                </h2>
+                <div id="requests-container">
+                    <p class="text-sm text-slate-500">Loading requests...</p>
+                </div>
+            </div>
+
+            <!-- Add Books -->
+            <div class="dash-card">
+                <h2 class="dash-title">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    Add New Book
+                </h2>
+                
+                <form id="add-book-form">
+                    <div class="form-group">
+                        <label class="form-label">Book Title</label>
+                        <input type="text" id="book-title" required class="form-input" placeholder="e.g. Introduction to Algorithms">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Book Type</label>
+                        <select id="book-type" required class="form-select">
+                            <option value="physical">Physical Book (BookList)</option>
+                            <option value="ebook">E-Book (PDF Vault)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Category / Course</label>
+                        <input type="text" id="book-category" required class="form-input" placeholder="e.g. CSE-1201">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Author Name</label>
+                        <input type="text" id="book-author" required class="form-input" placeholder="e.g. Thomas H. Cormen">
+                    </div>
+
+                    <div class="form-group" id="pdf-link-group" style="display: none;">
+                        <label class="form-label">PDF Link (Google Drive)</label>
+                        <input type="url" id="book-pdf" class="form-input" placeholder="https://drive.google.com/...">
+                    </div>
+
+                    <button type="submit" class="btn-submit-action">Add to Catalog</button>
+                    <p id="book-add-msg" style="color: var(--color-emerald-600); font-weight: 600; font-size: 0.875rem; margin-top: 0.75rem; display: none;">Book added successfully!</p>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Init Mock Data for checking
+        function initMockData() {
+            if (!localStorage.getItem('renewRequests')) {
+                const mockRequests = [
+                    { id: 101, studentId: '1904033', year: '4', booksCount: '3', date: '2026-04-10', time: '10:00-11:00', status: 'Pending', meetLink: '', fine: 0 },
+                    { id: 102, studentId: '2004111', year: '3', booksCount: '1', date: '2026-04-12', time: '14:00-15:00', status: 'Approved', meetLink: 'meet.google.com/abc-defg-hij', fine: 5 }
+                ];
+                localStorage.setItem('renewRequests', JSON.stringify(mockRequests));
+            }
+        }
+        initMockData();
+
+        // Toggle PDF link based on book type
+        document.getElementById('book-type').addEventListener('change', function(e) {
+            const pdfGroup = document.getElementById('pdf-link-group');
+            if(e.target.value === 'ebook') {
+                pdfGroup.style.display = 'block';
+                document.getElementById('book-pdf').setAttribute('required', 'true');
+            } else {
+                pdfGroup.style.display = 'none';
+                document.getElementById('book-pdf').removeAttribute('required');
+            }
+        });
+
+        // Add Book Form Handler
+        document.getElementById('add-book-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const type = document.getElementById('book-type').value;
+            const newBook = {
+                title: document.getElementById('book-title').value,
+                category: document.getElementById('book-category').value,
+                author: document.getElementById('book-author').value,
+                pdf: document.getElementById('book-pdf').value || null,
+                timestamp: Date.now()
+            };
+
+            let storageKey = type === 'ebook' ? 'customEbooks' : 'customPhysicalBooks';
+            let books = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            books.push(newBook);
+            localStorage.setItem(storageKey, JSON.stringify(books));
+
+            document.getElementById('book-add-msg').style.display = 'block';
+            setTimeout(() => { document.getElementById('book-add-msg').style.display = 'none'; }, 3000);
+            this.reset();
+            document.getElementById('pdf-link-group').style.display = 'none';
+        });
+
+        // Render Renew Requests
+        function loadRequests() {
+            const container = document.getElementById('requests-container');
+            const requests = JSON.parse(localStorage.getItem('renewRequests') || '[]');
+            
+            if(requests.length === 0) {
+                container.innerHTML = '<p style="color: var(--color-slate-500); font-size: 0.875rem;">No pending renewal requests.</p>';
+                return;
+            }
+
+            container.innerHTML = '';
+            
+            // Sort to show pending first
+            requests.sort((a, b) => (a.status === 'Pending' ? -1 : 1));
+
+            requests.forEach(req => {
+                const isPending = req.status === 'Pending';
+                
+                const card = document.createElement('div');
+                card.className = 'request-card ' + (isPending ? '' : 'approved');
+                card.innerHTML = `
+                    <div class="req-header">
+                        <span class="req-id">ID: ${req.studentId}</span>
+                        <span class="req-badge ${isPending ? 'req-pending' : 'req-approved'}">${req.status}</span>
+                    </div>
+                    <div class="req-body">
+                        <strong>Year:</strong> ${req.year}<br>
+                        <strong>Books:</strong> ${req.booksCount}<br>
+                        <strong>Slot:</strong> ${req.date} at ${req.time}
+                    </div>
+                    ${isPending ? `
+                    <div class="req-actions">
+                        <label class="form-label">Meet Link</label>
+                        <input type="text" id="meet-link-${req.id}" class="action-input" placeholder="meet.google.com/xxx-xxxx-xxx">
+                        
+                        <label class="form-label mt-2">Fine Levied (Tk)</label>
+                        <input type="number" id="fine-${req.id}" class="action-input" value="0">
+                        
+                        <button type="button" onclick="approveRequest(${req.id})" class="btn-submit-action btn-approve">Approve Request</button>
+                    </div>
+                    ` : `
+                    <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--color-slate-200); font-size: 0.875rem; color: var(--color-slate-600);">
+                        <strong>Meet Link:</strong> <a href="https://${req.meetLink.replace('https://', '')}" target="_blank" style="color: var(--color-blue-600)">${req.meetLink}</a><br>
+                        <strong>Fine:</strong> ${req.fine} Tk
+                    </div>
+                    `}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Global function to approve request
+        window.approveRequest = function(id) {
+            let requests = JSON.parse(localStorage.getItem('renewRequests') || '[]');
+            const index = requests.findIndex(r => r.id === id);
+            
+            if(index !== -1) {
+                const meetLink = document.getElementById(\`meet-link-\${id}\`).value;
+                const fine = document.getElementById(\`fine-\${id}\`).value;
+                
+                requests[index].status = 'Approved';
+                requests[index].meetLink = meetLink || 'meet.google.com/default';
+                requests[index].fine = parseInt(fine) || 0;
+                
+                localStorage.setItem('renewRequests', JSON.stringify(requests));
+                loadRequests(); // Re-render
+            }
+        };
+
+        // Initialize display
+        loadRequests();
+    </script>
+</body>
+</html>

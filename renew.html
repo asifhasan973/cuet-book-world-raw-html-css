@@ -100,12 +100,17 @@
                 <h2 class="form-title">Apply for Renewal Slot</h2>
                 <p class="form-subtitle">Schedule a virtual meeting with the librarian.</p>
 
-                <form class="renew-form" onsubmit="event.preventDefault(); showToast('Application submitted successfully!', 'success');">
+                <form class="renew-form" id="renew-application-form">
                     
+                    <div class="settings-group">
+                        <label class="settings-label">Student ID</label>
+                        <input type="text" id="renew-student-id" placeholder="e.g. 1904001" required class="settings-input">
+                    </div>
+
                     <div class="form-row">
                         <div class="settings-group">
                             <label class="settings-label">Select Your Year</label>
-                            <select required class="settings-select">
+                            <select id="renew-year" required class="settings-select">
                                 <option value="" disabled selected>Choose your year</option>
                                 <option value="1">1st Year</option>
                                 <option value="2">2nd Year</option>
@@ -116,18 +121,18 @@
 
                         <div class="settings-group">
                             <label class="settings-label">Borrowed Books</label>
-                            <input type="number" min="1" max="10" placeholder="Number of books" required class="settings-input">
+                            <input type="number" id="renew-books" min="1" max="10" placeholder="Number of books" required class="settings-input">
                         </div>
                     </div>
 
                     <div class="settings-group">
                         <label class="settings-label">Preferred Date</label>
-                        <input type="date" required class="settings-input">
+                        <input type="date" id="renew-date" required class="settings-input">
                     </div>
 
                     <div class="settings-group">
                         <label class="settings-label">Preferred Time Slot</label>
-                        <select required class="settings-select">
+                        <select id="renew-time" required class="settings-select">
                             <option value="" disabled selected>Select a time slot</option>
                             <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
                             <option value="12:00-13:00">12:00 PM - 1:00 PM</option>
@@ -142,6 +147,36 @@
 
                     <p class="form-note">After submitting, the authority will contact you with a meeting link for live renewal.</p>
                 </form>
+
+                <script>
+                    document.getElementById('renew-application-form').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const newRequest = {
+                            id: Date.now(),
+                            studentId: document.getElementById('renew-student-id').value,
+                            year: document.getElementById('renew-year').value,
+                            booksCount: document.getElementById('renew-books').value,
+                            date: document.getElementById('renew-date').value,
+                            time: document.getElementById('renew-time').value,
+                            status: 'Pending',
+                            meetLink: '',
+                            fine: 0
+                        };
+
+                        let requests = JSON.parse(localStorage.getItem('renewRequests') || '[]');
+                        requests.push(newRequest);
+                        localStorage.setItem('renewRequests', JSON.stringify(requests));
+                        
+                        if(typeof showToast === 'function') {
+                            showToast('Application submitted successfully!', 'success');
+                        } else {
+                            alert('Application submitted successfully!');
+                        }
+                        
+                        this.reset();
+                    });
+                </script>
             </div>
         </div>
 
