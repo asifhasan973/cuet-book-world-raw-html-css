@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in | CUET Book World</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+
+    <nav class="navbar py-4" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-box">CB</div>
+                <span class="logo-text">CUET Book World</span>
+            </a>
+
+            <div class="desktop-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="booklist.html" class="nav-link">BookList</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="mobile-menu-btn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu hidden">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-link">Home</a>
+                <a href="booklist.html" class="mobile-link">BookList</a>
+                <a href="profile.html" class="mobile-link">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <main class="login-main">
+
+        <div class="login-blobs">
+            <div class="blob login-blob-1"></div>
+            <div class="blob login-blob-2"></div>
+            <div class="blob login-blob-3"></div>
+        </div>
+
+        <div class="login-container">
+            <div class="login-card">
+
+                <div class="login-header">
+                    <a href="index.html" class="login-logo">CB</a>
+                    <h2 class="login-title">Welcome back</h2>
+                    <p class="login-subtitle">Please enter your details to log in.</p>
+                </div>
+
+                <form class="login-form" onsubmit="event.preventDefault(); showToast('Login successful! Redirecting...', 'success'); setTimeout(() => window.location.href='index.html', 1500);">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" required placeholder="name@example.com" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-header-row">
+                            <label class="form-label">Password</label>
+                            <a href="#" class="forgot-link">Forgot password?</a>
+                        </div>
+                        <input type="password" required placeholder="••••••••" class="form-input">
+                    </div>
+
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="remember" class="form-checkbox">
+                        <label for="remember" class="checkbox-label">Remember for 30 days</label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Log In</button>
+                </form>
+
+                <div class="login-footer">
+                    Don't have an account? <a href="signup.html" class="login-link">Sign up</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- main.js handles: navbar, mobile menu, active links, toast, scroll-to-top -->
+    <script src="scripts/main.js"></script>
+</body>
+</html>

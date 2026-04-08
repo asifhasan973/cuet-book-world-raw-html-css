@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | CUET Book World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/auth.css">
+</head>
+
+<body>
+
+
+    <nav class="navbar py-4" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-box">CB</div>
+                <span class="logo-text">CUET Book World</span>
+            </a>
+
+            <div class="desktop-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="booklist.html" class="nav-link">BookList</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="mobile-menu-btn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu hidden">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-link">Home</a>
+                <a href="booklist.html" class="mobile-link">BookList</a>
+                <a href="profile.html" class="mobile-link">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <main class="auth-main">
+
+        <div class="bg-shapes">
+            <div class="blob auth-blob-1"></div>
+            <div class="blob auth-blob-2"></div>
+            <div class="blob auth-blob-3"></div>
+        </div>
+
+        <div class="auth-container">
+            <div class="auth-card">
+                <a href="index.html" class="auth-card-header group">
+                    <div class="auth-card-logo">CB</div>
+                    <h1 class="auth-card-title">CUET Book World</h1>
+                </a>
+
+                <p class="auth-card-subtitle">Please log in or sign up to continue your journey</p>
+
+                <div class="auth-actions">
+                    <a href="login.html" class="btn-login">Log in</a>
+                    <a href="signup.html" class="btn-signup">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- main.js handles: navbar, mobile menu, active links, toast, scroll-to-top -->
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
