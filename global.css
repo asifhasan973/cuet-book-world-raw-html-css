@@ -1,0 +1,378 @@
+:root {
+  --font-sans: 'Inter', sans-serif;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-accent-50: #f5f3ff;
+  --color-accent-100: #ede9fe;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-rose-50: #fff1f2;
+  --color-rose-100: #ffe4e6;
+  --color-rose-200: #fecdd3;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-rose-700: #be123c;
+  --color-slate-700: #334155;
+  --color-brand-700: #1d4ed8;
+  --color-emerald-400: #34d399;
+  --color-pink-50: #fdf2f8;
+  --color-pink-400: #f472b6;
+  --color-pink-600: #db2777;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-white: #ffffff;
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  line-height: inherit;
+  background-color: var(--color-slate-50);
+  color: var(--color-slate-800);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  background-image: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+}
+
+::selection {
+  background-color: var(--color-brand-500);
+  color: var(--color-white);
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+svg {
+  display: block;
+}
+
+.max-w-7xl { max-width: 80rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+/* SVG / Icon size helpers */
+.w-4  { width:  1rem;    } .h-4  { height:  1rem;    }
+.w-5  { width:  1.25rem; } .h-5  { height:  1.25rem; }
+.w-6  { width:  1.5rem;  } .h-6  { height:  1.5rem;  }
+.w-8  { width:  2rem;    } .h-8  { height:  2rem;    }
+.w-10 { width:  2.5rem;  } .h-10 { height:  2.5rem;  }
+.w-12 { width:  3rem;    } .h-12 { height:  3rem;    }
+
+
+/* Navbar Shared */
+.navbar { position: fixed; width: 100%; top: 0; z-index: 50; transition: all 0.3s; }
+.navbar.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.navbar.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.navbar.glass-nav { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+.nav-container { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+.nav-logo:hover .logo-box { transform: rotate(12deg); }
+.nav-logo:hover .logo-text { color: var(--color-brand-600); }
+.logo-box { width: 2.5rem; height: 2.5rem; background-image: linear-gradient(to top right, var(--color-brand-600), var(--color-accent-500)); border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--color-white); font-weight: 700; font-size: 1.125rem; transition: transform 0.3s; }
+.logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; color: var(--color-slate-900); transition: color 0.3s; }
+.desktop-menu { display: none; }
+@media (min-width: 768px) { .desktop-menu { display: flex; align-items: center; gap: 2rem; } }
+.nav-link { font-size: 0.875rem; font-weight: 600; color: var(--color-slate-600); transition: color 0.3s; position: relative; }
+.nav-link:hover { color: var(--color-brand-600); }
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: -0.25rem; height: 0.125rem; width: 0; background-color: var(--color-brand-600); transition: all 0.3s; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link.active { color: var(--color-brand-600); }
+
+/* Mobile Menu */
+.mobile-menu-btn { display: block; padding: 0.5rem; color: var(--color-slate-600); transition: color 0.3s; }
+.mobile-menu-btn:hover { color: var(--color-brand-600); }
+@media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+.mobile-menu { position: absolute; top: 100%; left: 0; width: 100%; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-slate-200); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); transition: all 0.3s; transform-origin: top; transform: scaleY(0); opacity: 0; }
+.mobile-menu.hidden { display: none; }
+.mobile-menu.open { transform: scaleY(1); opacity: 1; }
+.mobile-menu-content { display: flex; flex-direction: column; padding: 1.5rem; gap: 1rem; }
+.mobile-link { font-size: 1.125rem; font-weight: 500; color: var(--color-slate-600); }
+.mobile-link.active { font-weight: 700; color: var(--color-brand-600); }
+.mobile-menu-footer { padding-top: 1rem; border-top: 1px solid var(--color-slate-100); }
+
+/* Buttons */
+.btn-primary { padding: 0.625rem 1.25rem; background-color: var(--color-slate-900); color: var(--color-white); font-size: 0.875rem; font-weight: 600; border-radius: 9999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); transition: all 0.3s; }
+.btn-primary:hover { background-color: var(--color-brand-600); transform: translateY(-0.125rem); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+.btn-primary-block { display: block; width: 100%; text-align: center; padding: 0.75rem 1.25rem; background-color: var(--color-brand-600); color: var(--color-white); font-weight: 600; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+.btn-primary-block:hover { background-color: var(--color-brand-700); }
+
+/* Blobs Layer */
+.bg-shapes { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; display: flex; justify-content: center; align-items: center; }
+.blob { position: absolute; border-radius: 9999px; mix-blend-mode: multiply; filter: blur(3rem); opacity: 0.7; animation: blob 7s infinite; }
+
+/* Footer Shared */
+.footer { background-color: var(--color-slate-900); color: var(--color-slate-300); padding-top: 3rem; padding-bottom: 3rem; border-top: 1px solid var(--color-slate-800); margin-top: auto; position: relative; z-index: 20; width: 100%; }
+.footer-container { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 2rem; }
+@media (min-width: 768px) { .footer-container { flex-direction: row; } }
+.footer-brand { display: flex; align-items: center; gap: 0.75rem; }
+.footer-logo-box { width: 2rem; height: 2rem; background-image: linear-gradient(to top right, var(--color-brand-600), var(--color-accent-500)); color: var(--color-white); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: 700; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+.footer-brand-text { font-size: 1.125rem; font-weight: 700; color: var(--color-white); letter-spacing: -0.025em; }
+.footer-contact { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; font-size: 0.875rem; font-weight: 500; }
+@media (min-width: 640px) { .footer-contact { flex-direction: row; gap: 2.5rem; } }
+.contact-link { display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
+.contact-link:hover { color: var(--color-white); }
+.contact-link:hover .contact-icon { background-color: var(--color-brand-600); color: var(--color-white); }
+.contact-icon { padding: 0.5rem; background-color: var(--color-slate-800); border-radius: 9999px; transition: background-color 0.3s, color 0.3s; color: var(--color-slate-400); }
+.w-4 { width: 1rem; } .h-4 { height: 1rem; } .w-6 { width: 1.5rem; } .h-6 { height: 1.5rem; }
+.footer-copyright { font-size: 0.875rem; color: var(--color-slate-500); font-weight: 500; }
+
+/* ============================================================
+   FEATURE: Toast Notification System
+   ============================================================ */
+#toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    max-width: 22rem;
+    width: max-content;
+    pointer-events: all;
+    backdrop-filter: blur(16px);
+    /* entrance: start below + invisible */
+    transform: translateY(1.5rem);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity   0.35s ease;
+}
+.toast--visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Variants */
+.toast--success {
+    background-color: rgba(236, 253, 245, 0.95);
+    border-color: var(--color-emerald-100);
+    color: #065f46;
+}
+.toast--success .toast__icon { color: var(--color-emerald-500); }
+
+.toast--error {
+    background-color: rgba(255, 241, 242, 0.95);
+    border-color: var(--color-rose-200);
+    color: #9f1239;
+}
+.toast--error .toast__icon { color: var(--color-rose-500); }
+
+.toast--info {
+    background-color: rgba(239, 246, 255, 0.95);
+    border-color: var(--color-brand-100);
+    color: #1e3a8a;
+}
+.toast--info .toast__icon { color: var(--color-brand-500); }
+
+.toast__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 9999px;
+}
+
+.toast__message {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.toast__close {
+    flex-shrink: 0;
+    padding: 0.25rem;
+    margin-left: 0.25rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 0.75rem;
+    color: inherit;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    background: none;
+    font-family: inherit;
+}
+.toast__close:hover { opacity: 1; }
+
+
+/* ============================================================
+   FEATURE: Scroll-to-Top Button
+   ============================================================ */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 9998;
+    width: 2.75rem;
+    height: 2.75rem;
+    background-image: linear-gradient(to top right, var(--color-brand-600), var(--color-accent-500));
+    color: var(--color-white);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    cursor: pointer;
+    border: none;
+    /* hidden by default */
+    opacity: 0;
+    transform: translateY(1rem) scale(0.85);
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-top-btn--visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+}
+.scroll-top-btn:hover {
+    transform: translateY(-0.125rem) scale(1.05);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45);
+}
+
+
+/* ============================================================
+   FEATURE: Scroll Progress Bar
+   ============================================================ */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(to right, var(--color-brand-500), var(--color-accent-500));
+    z-index: 9999;
+    transition: width 0.1s linear;
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+}
+
+
+/* ============================================================
+   FEATURE: Page Entrance Fade-In
+   ============================================================ */
+.page-entering {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.page-entered {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ============================================================
+   FEATURE: Button Ripple Effect
+   ============================================================ */
+.ripple {
+    position: absolute;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.35);
+    pointer-events: none;
+    animation: ripple-expand 0.55s ease-out forwards;
+}
+@keyframes ripple-expand {
+    from { transform: scale(0); opacity: 1; }
+    to   { transform: scale(2.5); opacity: 0; }
+}
+
+
+/* ============================================================
+   FEATURE: Smart Navbar (hide on scroll down)
+   ============================================================ */
+.navbar {
+    transition: transform 0.35s ease, padding 0.3s ease,
+                background 0.3s ease, box-shadow 0.3s ease;
+}
+.navbar--hidden {
+    transform: translateY(-100%);
+}
+
+
+/* ============================================================
+   FEATURE: Typed Text Cursor
+   ============================================================ */
+[data-typed]::after {
+    content: '|';
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink-cursor 0.75s step-end infinite;
+    color: var(--color-brand-500);
+}
+@keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+

@@ -1,0 +1,144 @@
+/* Auth Specific Main Layout */
+.auth-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  padding-top: 7rem;
+  padding-bottom: 3rem;
+  overflow: hidden;
+}
+
+/* Auth Blobs */
+.auth-blob-1 {
+  width: 31.25rem;
+  height: 31.25rem;
+  background-color: rgba(96, 165, 250, 0.2);
+}
+.auth-blob-2 {
+  width: 25rem;
+  height: 25rem;
+  background-color: rgba(139, 92, 246, 0.2);
+  left: 25%;
+  animation-delay: 200ms;
+}
+.auth-blob-3 {
+  width: 28.125rem;
+  height: 28.125rem;
+  background-color: rgba(244, 114, 182, 0.2);
+  bottom: 0;
+  right: 25%;
+  animation-delay: 400ms;
+}
+
+/* Auth Container & Card */
+.auth-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0 1.5rem;
+}
+
+.auth-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s;
+}
+.auth-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.auth-card-header {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.auth-card-logo {
+  width: 4rem;
+  height: 4rem;
+  background-image: linear-gradient(to top right, var(--color-brand-600), var(--color-accent-500));
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+}
+.auth-card-header:hover .auth-card-logo {
+  transform: rotate(12deg);
+}
+
+.auth-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-slate-900);
+  transition: color 0.3s;
+}
+.auth-card-header:hover .auth-card-title {
+  color: var(--color-brand-600);
+}
+
+.auth-card-subtitle {
+  color: var(--color-slate-500);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.auth-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn-login {
+  width: 100%;
+  display: block;
+  padding: 0.875rem;
+  background-color: var(--color-brand-600);
+  color: var(--color-white);
+  font-weight: 600;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+.btn-login:hover {
+  background-color: var(--color-brand-700);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.125rem);
+}
+
+.btn-signup {
+  width: 100%;
+  display: block;
+  padding: 0.875rem;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-slate-200);
+  color: var(--color-slate-700);
+  font-weight: 600;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+.btn-signup:hover {
+  border-color: var(--color-brand-500);
+  color: var(--color-brand-600);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.125rem);
+}
